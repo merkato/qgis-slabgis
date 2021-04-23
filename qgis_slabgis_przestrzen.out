@@ -1,0 +1,47 @@
+\BOOKMARK [-1][-]{part.1}{Odniesienia przestrzenne}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Zbiory danych przestrzennych}{part.1}% 2
+\BOOKMARK [1][-]{section.1.1}{Wymagania prawne}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{GeoPackage - nastepca Shapefile}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.3}{Baza danych w GeoPackage}{chapter.1}% 5
+\BOOKMARK [0][-]{chapter.2}{Uk\233ady wsp\363\233rzednych}{part.1}% 6
+\BOOKMARK [1][-]{section.2.1}{CRS i uk\233ad wsp\363\233rzednych}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.2}{Uwarunkowania prawne}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.3}{Starsze uk\233ady wsp\363\233rzednych}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.4}{Cwiczenia}{chapter.2}% 10
+\BOOKMARK [0][-]{chapter.3}{Praca z archiwalnymi rastrami}{part.1}% 11
+\BOOKMARK [1][-]{section.3.1}{Wprowadzenie}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.2}{Referencja do punkt\363w wsp\363lnych}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.3}{Referencja do naroznik\363w mapy}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.4}{Cwiczenia}{chapter.3}% 15
+\BOOKMARK [0][-]{chapter.4}{Referencja liniowa}{part.1}% 16
+\BOOKMARK [1][-]{section.4.1}{Wprowadzenie}{chapter.4}% 17
+\BOOKMARK [1][-]{section.4.2}{Przygotowanie zbioru liniowego}{chapter.4}% 18
+\BOOKMARK [1][-]{section.4.3}{Wyszukiwanie lokalizacji}{chapter.4}% 19
+\BOOKMARK [1][-]{section.4.4}{Cwiczenia}{chapter.4}% 20
+\BOOKMARK [-1][-]{part.2}{Analiza}{}% 21
+\BOOKMARK [0][-]{chapter.5}{Numeryczny model terenu - wprowadzenie}{part.2}% 22
+\BOOKMARK [1][-]{section.5.1}{Mapa spadk\363w}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.2}{Mapa ekspozycji}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.3}{Inne wskazniki topograficzne}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.4}{Cwiczenia}{chapter.5}% 26
+\BOOKMARK [0][-]{chapter.6}{Widocznosc obiekt\363w}{part.2}% 27
+\BOOKMARK [1][-]{section.6.1}{Dominanty krajobrazu}{chapter.6}% 28
+\BOOKMARK [1][-]{section.6.2}{Osie widokowe}{chapter.6}% 29
+\BOOKMARK [1][-]{section.6.3}{Cwiczenia}{chapter.6}% 30
+\BOOKMARK [0][-]{chapter.7}{Nas\233onecznienie}{part.2}% 31
+\BOOKMARK [1][-]{section.7.1}{Mapa nas\233onecznienia}{chapter.7}% 32
+\BOOKMARK [1][-]{section.7.2}{Zmiana warunk\363w}{chapter.7}% 33
+\BOOKMARK [1][-]{section.7.3}{Potencja\233 solarny}{chapter.7}% 34
+\BOOKMARK [1][-]{section.7.4}{Cwiczenia}{chapter.7}% 35
+\BOOKMARK [0][-]{chapter.8}{Wskazniki urbanizacyjne}{part.2}% 36
+\BOOKMARK [1][-]{section.8.1}{Powierzchnia zabudowy}{chapter.8}% 37
+\BOOKMARK [1][-]{section.8.2}{Wskaznik intensywnosci zabudowy}{chapter.8}% 38
+\BOOKMARK [1][-]{section.8.3}{Powierzchnia biologicznie czynna}{chapter.8}% 39
+\BOOKMARK [1][-]{section.8.4}{Cwiczenia}{chapter.8}% 40
+\BOOKMARK [0][-]{chapter.9}{Publikacja w internecie}{part.2}% 41
+\BOOKMARK [1][-]{section.9.1}{GeoPDF}{chapter.9}% 42
+\BOOKMARK [1][-]{section.9.2}{Strona html z osadzona mapa}{chapter.9}% 43
+\BOOKMARK [1][-]{section.9.3}{Geoportal Lizmap/QWC}{chapter.9}% 44
+\BOOKMARK [1][-]{section.9.4}{Us\233ugi w chmurze}{chapter.9}% 45
+\BOOKMARK [1][-]{section.9.5}{Cwiczenia}{chapter.9}% 46
+\BOOKMARK [0][-]{chapter*.22}{Bibliografia}{part.2}% 47

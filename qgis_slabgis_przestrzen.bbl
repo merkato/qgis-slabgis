@@ -1,0 +1,16 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Affek(2013)]{Affek_Georeferencing_2013}
+A.~Affek.
+\newblock Georeferencing of historical maps using gis, as exemplified by the
+  austrian military surveys of galicia.
+\newblock online, 2013.
+\newblock URL
+  \url{http://rcin.org.pl/igipz/Content/40957/WA51_58447_r2013-t86-no4_G-Polonica-Affek.pdf}.
+
+\end{thebibliography}

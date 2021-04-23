@@ -6,20 +6,24 @@
 %%% PACKAGES 
 %%%------------------------------------------------------------------------------
 
+% Język i czcionki
 \usepackage[utf8]{inputenc} % If utf8 encoding
 % \usepackage[lantin1]{inputenc} % If not utf8 encoding, then this is probably the way to go
 \usepackage[T1]{fontenc}
 \usepackage{polski}
 \usepackage[polish]{babel} 
 \usepackage[final]{microtype} % Less badboxes
-\usepackage{tcolorbox}
-\usepackage{natbib}
-% \usepackage{kpfonts} %Font
 \usepackage{lmodern}
 \usepackage{tgpagella}
+
+% Bibliografia
+\usepackage{natbib}
+
+% \usepackage{kpfonts} %Font
 % \usepackage{tikz} % Figures
 \usepackage{graphicx} % Include figures
 \usepackage{import}
+\usepackage{tcolorbox}
 \graphicspath{ {ilustracje/} }
 \definecolor{titlepagecolor}{cmyk}{0.7,.30,0,.40}
 \definecolor{miejscekolor}{cmyk}{0,0,1,.10}
@@ -56,15 +60,9 @@
 	\frontmatter
 	
 	\maketitle
-	
-	\begin{abstract}
-		Robię co mogę
-	\end{abstract}
-	\clearpage
-	
-	\tableofcontents*
-	\clearpage
 
+
+\mainmatter
 \part{Odniesienia przestrzenne}
 	\chapter{Zbiory danych przestrzennych}
 		\section{Wymagania prawne}
@@ -80,6 +78,19 @@
 	\chapter{Układy współrzędnych}
 		\section{CRS i układ współrzędnych}
 		W środowisku GIS możemy spotkać się z pojęciami CRS, odwzorowania kartograficznego, układu współrzędnych, oraz tzw. datum czy gridshift. Do dalszej komfortowej pracy konieczne jest zapoznanie się z nimi, oraz ich wzajemnymi powiązaniami.
+		\begin{itemize}
+			\item 		\textbf{Coordinate Reference System} - system odniesień przestrzennych. Jest to zbiór parametrów opisujących wszelkie cechy odniesień przestrzennych konieczne do poprawnego wskazania unikalnego miejsca w odniesieniu do powierzchni Ziemi. Należą do nich odwzorowanie kartograficzne, elipsoida, tzw. datum, południk i równoleżnik początkowy, oraz jednostki miary (stopnie, metry, sążnie, etc.)
+			\item \textbf{Odwzorowanie kartograficzne} - jest to matematyczna realizacja sposobu odwzorowania elipsoidy obrotowej na płaszczyźnie mapy (lub zwizualizowania pseudo-trójwymiarowego w kartografii komputerowej). W praktyce europejskiej spotkamy się z odwzorowaniami: poprzecznym Merkatora, Gaussa-Kr\"{u}gera, azymutalnym Lamberta. W mapach obecnie archiwalnych popularne były również odwzorowania quasi-stereograficzne (WIG i GUGIK80) i Cassiniego-Soldnera. Można też było się spotkać z odwzorowaniami wielościennymi (np. wczesne edycje Messtichblatt).
+			\item \textbf{Elipsoida} - to bryła powstała w wyniku obrotu elipsy wokół jej osi symetrii. Ziemię uznajemy w dużym uproszczeniu za elipsoidę obrotową (choć jej kształt jest dużo bardziej skomplikowany - nazywany geoidą). Ruch obrotowy Ziemi sprawia, że średnica równika jest o 43 km większa niż średnica pomiędzy biegunami. W czasach gdy kształt i rozmiary naszej planety były dopiero poznawane, powstało wiele opracowań opisujących parametry półosi wielkiej (a), półosi małej (b), oraz spłaszczenia (1/f). W naszych dalszych pracach będziemy wykorzystywać elipsoidy Bessela, Krassowskiego, oraz WGS84(GRS80).
+			\item \textbf{Datum} - to geodezyjny układ odniesienia, opisujący kształt geoidy globalnie (np. systemy ETRS89/2000), jak również bardziej lokalnie (Pułkowo, Rauenberg, Hermannskogel). Obecnie w praktyce GIS geodezyjne układy odniesienia opisują translację względem geocentrycznego układu ETRF 89.
+			\begin{figure}[!ht]
+				\centering
+				\includegraphics[width=15cm]{crs-transformacja-elipsoidy}
+				\caption{Datum - Transformacja między układami odniesienia (za \citep{Affek_Georeferencing_2013})}
+			\end{figure}
+		    \item EPSG -  Rejestr i baza danych o układach odniesień (SRS i CRS), dawniej prowadzony przez \textbf{European Petroleum Survey Group}, obecnie Komitet Geomatyczny IOGP. Znajdują się w nim opisy parametrów elipsoid, południków zerowych, oraz całych CRS. Zamiennie z pojęciem kodu EPSG używa się terminu SRID - trochę szerszego, zawierającego również definicje własne producentów oprogramowania. Tabelę kodów EPSG przydatnych w codziennej pracy znajdziesz na końcu tego rozdziału. Można również skorzystać z wyszukiwarek kodu np. \hyperlink{https://epsg.org/search/map}{https://epsg.org/search/map}
+		    \end{itemize}
+	    Pozostałe parametry używane przy definiowaniu CRS opiszemy bezpośrednio przy stosowanych układach współrzędnych.
 	
 		\section{Uwarunkowania prawne}
 		Wymagania prawne co do stosowanych układów odniesienia zdefiniowane są w rozporządzeniu Rady Ministrów z dnia 15 października 2012 r. w sprawie państwowego systemu odniesień przestrzennych (Dz.U. 2012 poz. 1247)\footnote{http://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20120001247}.
@@ -191,10 +202,13 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale równie
 \subsection{Nowa droga rowerowa}
 \subsection{Plan zagospodarowania} 
 \backmatter	
+
+\tableofcontents*
+\clearpage
 %%% BIBLIOGRAPHY
 %%% -------------------------------------------------------------
 
-% \bibliographystyle{utphysics}
-% \bibliography{ref}
+\bibliographystyle{abbrvnat}
+\bibliography{qgis}
 
 \end{document}
