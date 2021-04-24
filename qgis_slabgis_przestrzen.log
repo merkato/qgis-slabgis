@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2020.11.12)  23 APR 2021 17:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2020.11.12)  24 APR 2021 07:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1064,39 +1064,63 @@ Class memoir Warning: The material used in the headers is too large
 either increase the head height or redesign the header
 (in both cases you will find help in the memoir manual). on input line 110.
 
-[4 <./ilustracje/crs-transformacja-elipsoidy.png>]
-<ilustracje/crs-cwiczenie1-brak-crs.png, id=245, 459.7175pt x 284.06125pt>
+[4 <./ilustracje/crs-transformacja-elipsoidy.png>] [5]
+<ilustracje/crs-cwiczenie1-brak-crs.png, id=257, 459.7175pt x 284.06125pt>
 File: ilustracje/crs-cwiczenie1-brak-crs.png Graphic file (type png)
 <use ilustracje/crs-cwiczenie1-brak-crs.png>
 Package pdftex.def Info: ilustracje/crs-cwiczenie1-brak-crs.png  used on input 
-line 121.
+line 128.
 (pdftex.def)             Requested size: 284.52756pt x 175.8214pt.
-<ilustracje/crs-cwiczenie1-menu-kontekstowe.png, id=246, 708.6475pt x 436.63126
+<ilustracje/crs-cwiczenie1-menu-kontekstowe.png, id=258, 708.6475pt x 436.63126
 pt>
 File: ilustracje/crs-cwiczenie1-menu-kontekstowe.png Graphic file (type png)
 <use ilustracje/crs-cwiczenie1-menu-kontekstowe.png>
 Package pdftex.def Info: ilustracje/crs-cwiczenie1-menu-kontekstowe.png  used o
-n input line 127.
+n input line 134.
 (pdftex.def)             Requested size: 284.52756pt x 175.31564pt.
- [5] [6 <./ilustracje/crs-cwiczenie1-brak-crs.png> <./ilustracje/crs-cwiczenie1
--menu-kontekstowe.png>]
-<ilustracje/crs-cwiczenie2-zmien.png, id=272, 1676.2625pt x 1022.82124pt>
+ [6 <./ilustracje/crs-cwiczenie1-brak-crs.png>]
+<ilustracje/crs-cwiczenie2-zmien.png, id=265, 1676.2625pt x 1022.82124pt>
 File: ilustracje/crs-cwiczenie2-zmien.png Graphic file (type png)
 <use ilustracje/crs-cwiczenie2-zmien.png>
 Package pdftex.def Info: ilustracje/crs-cwiczenie2-zmien.png  used on input lin
-e 144.
+e 151.
 (pdftex.def)             Requested size: 284.52756pt x 173.61198pt.
-<ilustracje/crs-cwiczenie2-zapisz-raster.png, id=273, 801.99625pt x 778.91pt>
+<ilustracje/crs-cwiczenie2-zapisz-raster.png, id=266, 801.99625pt x 778.91pt>
 File: ilustracje/crs-cwiczenie2-zapisz-raster.png Graphic file (type png)
 <use ilustracje/crs-cwiczenie2-zapisz-raster.png>
 Package pdftex.def Info: ilustracje/crs-cwiczenie2-zapisz-raster.png  used on i
-nput line 151.
+nput line 158.
 (pdftex.def)             Requested size: 284.52756pt x 276.34265pt.
 
-[7 <./ilustracje/crs-cwiczenie2-zmien.png>] [8 <./ilustracje/crs-cwiczenie2-zap
-isz-raster.png>] [9
+Overfull \hbox (26.10007pt too wide) in paragraph at lines 165--166
+[]\T1/qpl/m/n/10.95 (-20) Zaczniemy w pu-stym pro-jek-cie, od za-ªa-do-wa-nia z
+bioru \T1/qpl/m/it/10.95 (-20) /mo-dul1/crs/prg/wojewodztwa.shp\T1/qpl/m/n/10.9
+5 (-20) .
+ []
 
-] [10
+[7 <./ilustracje/crs-cwiczenie1-menu-kontekstowe.png>]
+<ilustracje/crs-wydruk-laea.png, id=282, 540.0175pt x 235.88126pt>
+File: ilustracje/crs-wydruk-laea.png Graphic file (type png)
+<use ilustracje/crs-wydruk-laea.png>
+Package pdftex.def Info: ilustracje/crs-wydruk-laea.png  used on input line 169
+.
+(pdftex.def)             Requested size: 142.26378pt x 62.1411pt.
+ [8 <./ilustracje/crs-cwiczenie2-zmien.png> <./ilustracje/crs-cwiczenie2-zapisz
+-raster.png>]
+<ilustracje/crs-laea-siatka.png, id=292, 529.98pt x 222.8325pt>
+File: ilustracje/crs-laea-siatka.png Graphic file (type png)
+<use ilustracje/crs-laea-siatka.png>
+Package pdftex.def Info: ilustracje/crs-laea-siatka.png  used on input line 176
+.
+(pdftex.def)             Requested size: 142.26378pt x 59.81535pt.
+<ilustracje/crs-laea-linie-siatki.png, id=293, 525.965pt x 425.59pt>
+File: ilustracje/crs-laea-linie-siatki.png Graphic file (type png)
+<use ilustracje/crs-laea-linie-siatki.png>
+Package pdftex.def Info: ilustracje/crs-laea-linie-siatki.png  used on input li
+ne 182.
+(pdftex.def)             Requested size: 142.26378pt x 115.11214pt.
+ [9 <./ilustracje/crs-wydruk-laea.png> <./ilustracje/crs-laea-siatka.png> <./il
+ustracje/crs-laea-linie-siatki.png>] [10
 
 ] [11
 
@@ -1110,10 +1134,12 @@ isz-raster.png>] [9
 
 ] [16
 
-]
-(./qgis_slabgis_przestrzen.toc [17
+] [17
 
-]) [18] (./qgis_slabgis_przestrzen.bbl
+]
+(./qgis_slabgis_przestrzen.toc [18
+
+]) [19] (./qgis_slabgis_przestrzen.bbl
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
 4.
 
@@ -1129,30 +1155,30 @@ Package microtype Info: Loading generic protrusion settings for font family
 Class memoir Warning: The material used in the headers is too large
 (13.68864pt) for the given head height (13.6pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 214.
+(in both cases you will find help in the memoir manual). on input line 247.
 
-[19
+[20
 
 
 ]
 \tf@toc=\write8
 \openout8 = `qgis_slabgis_przestrzen.toc'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 214.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 214.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 247.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 247.
  (./qgis_slabgis_przestrzen.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 214.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 214.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 247.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 247.
 Package rerunfilecheck Info: File `qgis_slabgis_przestrzen.out' has not changed
 .
-(rerunfilecheck)             Checksum: E263CC2E968347242E2C2B164062BB16;3086.
+(rerunfilecheck)             Checksum: CD116C6888A8B1A514A6642A3F40384F;3086.
  ) 
 Here is how much of TeX's memory you used:
- 22475 strings out of 482778
- 407544 string characters out of 5954989
- 890949 words of memory out of 5000000
- 37249 multiletter control sequences out of 15000+600000
- 607040 words of font info for 100 fonts, out of 8000000 for 9000
+ 22511 strings out of 482778
+ 408304 string characters out of 5954989
+ 890948 words of memory out of 5000000
+ 37270 multiletter control sequences out of 15000+600000
+ 607320 words of font info for 102 fonts, out of 8000000 for 9000
  56 hyphenation exceptions out of 8191
  59i,12n,75p,856b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{https://epsg.org/search/map} has been referenced 
@@ -1163,10 +1189,10 @@ s/tex-gyre/q-ec.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}</usr/
 share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/publ
 ic/tex-gyre/qplb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qplr.pfb></u
 sr/share/texmf/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on qgis_slabgis_przestrzen.pdf (21 pages, 536973 bytes).
+Output written on qgis_slabgis_przestrzen.pdf (22 pages, 594641 bytes).
 PDF statistics:
- 440 PDF objects out of 1000 (max. 8388607)
- 399 compressed objects within 4 object streams
- 109 named destinations out of 1000 (max. 500000)
- 18334 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 459 PDF objects out of 1000 (max. 8388607)
+ 413 compressed objects within 5 object streams
+ 120 named destinations out of 1000 (max. 500000)
+ 18349 words of extra memory for PDF output out of 20736 (max. 10000000)
 

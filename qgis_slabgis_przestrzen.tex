@@ -107,10 +107,17 @@ tworzeniu zbiorów danych przestrzennych przez organy władzy publicznej, przy c
 2. W pracach geodezyjnych i kartograficznych innych niż wymienione w ust. 1 pkt 1–4 stosuje się układ współrzędnych
 PL-UTM lub układ współrzędnych PL-1992.
 \end{tcolorbox}	
-			\subsection{PUWG 92}
-			\subsection{PUWG 2000}
-			\subsection{UTM i LAEA}
+			\subsection{PL-1992}
+			Układ (w dalszej części skryptu będziemy używać nazwy układ 92) oparty jest o odwzorowanie Gaussa-Kr\"ugera z południkiem osiowym 19E. Praktyczna stosowalność układu między 14E i 24.30E. Współrzędna wschodnia (X) na południku osiowym przyjmuje wartość 500000, zaś współrzędna północna -5300000. Zniekształcenie skali na południku osiowym przyjmuje wartość 0,9993 (co przekłada się na skurcz -0,7m/km).
+			\subsection{PL-2000}
+			Układ PL-2000 (dalej w skrócie będziemy nazywać go 2000, ze wskazaniem strefy), tak jak układ 92 oparty jest o odwzorowanie Gaussa-Kr\"ugera, z tą różnicą że utworzono tu cztery strefy południkowe 15, 18, 21, 24 oraz przypisano im numery 5, 6, 7, 8. Współrzędna wschodnia na południku osiowym w każdej strefie przyjmuje wartość (500000 + n*1000000). Dla strefy 5 (15E) będzie to +5500000,00. Jak widzimy na podstawie pierwszej cyfry współrzędnej wschodniej możemy ustalić numer strefy. Współczynnik skali to 0,999923. 
+			\subsection{UTM, LAEA, LCC}
+			Układ współrzędnych PL-LAEA oparty jest o odwzorowanie azymutalne równopowierzchniowe Lamberta, z południkiem początkowym 10E, równoleżnikiem 52N, współrzędne początkowe +4321000, +3210000.
+			Układ współrzędnych PL-LCC oparty jest o odwzorowanie stożkowe równokątne Lamberta, z równoleżnikami siecznymi 35 i 65. Początek układu współrzędnych to punkt o współrzędnych geograficznych 10E, 52N i współrzędnych kartezjańskich + 4000000, +2800000.
+			Układ PL-UTM to realizacja światowego układu współrzędnych UTM opartego o odwzorowanie poprzeczne Merkatora w trzech strefach południkowych z południkami 15, 21, 27 oznaczane odpowiednio numerami 33, 34, 35.
 		\section{Starsze układy współrzędnych}
+		
+		LAEA 3035
 		\section{Ćwiczenia}
 		\subsection{Przypisanie CRS warstwy rastrowej}
 		W tym ćwiczeniu wykorzystamy zbiory numerycznego modelu terenu w formacie ASCII GRID (.asc) udostępniane poprzez Główny Urząd Geodezji i Kartografii. 
@@ -128,7 +135,7 @@ PL-UTM lub układ współrzędnych PL-1992.
     	\caption{Menu kontekstowe warstwy - Ustawienie CRS}
     \end{figure} 
 		\subsection{Zmiana odwzorowania rastra}
-		W kolejnym ćwiczeniu zmienimy odwzorowanie naszej warstwy rastrowej i zapiszemy nowy zbiór na dysku.
+				W kolejnym ćwiczeniu zmienimy odwzorowanie naszej warstwy rastrowej i zapiszemy nowy zbiór na dysku.
 		Wykorzystamy uprzednio otwarty raster NMT. Nasze zadanie możemy wykonać na dwa sposoby. Pierwszym jest wykorzystanie algorytmu processingu \textbf{Zmień odwzorowanie}. Ukaże się nam okno algorytmu, w którym wskazujemy kolejno:
 		\begin{enumerate}
 			\item warstwę wejściową
@@ -151,7 +158,33 @@ PL-UTM lub układ współrzędnych PL-1992.
 	\includegraphics[width=10cm]{crs-cwiczenie2-zapisz-raster}
 	\caption{Menu kontekstowe warstwy - Eksport Zapisz Jako}
 \end{figure} 		
-W tym wypadku również wskazujemy docelowy układ współrzędnych, ale również możemy wygodnie wskazać docelową rozdzielczość rastra.
+W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także możemy wygodnie wskazać docelową rozdzielczość rastra.
+	\subsection{Przypisanie układu współrzędnych wydruku}
+	W ostatnim zadaniu tej sekcji przygotujemy arkusz wydruku mapy w odwzorowaniu azymutalnym Lamberta.
+	\begin{enumerate}
+		\item Zaczniemy w pustym projekcie, od załadowania zbioru \emph{/modul1/crs/prg/wojewodztwa.shp}. Są to granice województw pochodzące z Państwowego Rejestru Granic, w układzie współrzędnych 92.
+		\item W kolejnym kroku uruchamiamy Menedżer wydruków i Nowy Wydruk (Ctrl+P)
+		\begin{figure}[!ht]
+			\centering
+			\includegraphics[width=5cm]{crs-wydruk-laea}
+			\caption{Właściwości mapy - zmiana układu i skali}
+		\end{figure}
+		\item Na arkuszu osadzamy obiekt mapy, we właściwościach po prawej stronie ustawiamy skalę 1:3500000, oraz obrót 9 stopni, a następnie klikamy w symbol globusu poniżej (zobacz na ilustracji) i wskazujemy układ o symbolu EPSG:3035 (ETRS89-extended/LAEA Europe).
+		\item W zakładce Siatka klikamy w ikonkę plusa, a następnie w przycisk Modyfikuj siatkę.
+		\begin{figure}[!ht]
+			\centering
+			\includegraphics[width=5cm]{crs-laea-siatka}
+			\caption{Zakładka Siatka - tworzenie nowej siatki kartograficznej}
+		\end{figure}
+		\item W ustawieniach Siatki (na ilustracji) wprowadzamy odstęp X i Y (wyrażony w jednostkach układu współrzędnych, tutaj metrach).
+		\begin{figure}[!ht]
+			\centering
+			\includegraphics[width=5cm]{crs-laea-linie-siatki}
+			\caption{Właściwości siatki}
+		\end{figure}
+		\item Na koniec zmieńmy odwzorowanie naszej mapy na stożkowe Lamberta (w oknie filtra wyboru układu użyjemy EPSG:3034, ETRS89-extended/LCC Europe), oraz skalę na 1:15000000, aby stwierdzić zniekształcenie linii południkowych.
+	\end{enumerate} 
+
 	\chapter{Praca z archiwalnymi rastrami}
 		\section{Wprowadzenie}
 		\section{Referencja do punktów wspólnych}
