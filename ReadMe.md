@@ -1,7 +1,9 @@
-# Podręcznik szkoleniowy
+# Podręcznik szkoleniowy QGIS
 Szkolenie na zlecenie Śląskiego Laboratorium GIS UŚ.
 
-## LaTeX
+## Pakiety LaTeX
+
+natbib, Bibtex
 
 ##Bibtex
 

@@ -1,9 +1,9 @@
-%%% DOCUMENTCLASS 
+%%% DOCUMENTCLASS
 %%%-------------------------------------------------------------------------------
 
 \documentclass[a4paper,11pt, onecolumn, openany]{memoir}
 
-%%% PACKAGES 
+%%% PACKAGES
 %%%------------------------------------------------------------------------------
 
 % Język i czcionki
@@ -11,7 +11,7 @@
 % \usepackage[lantin1]{inputenc} % If not utf8 encoding, then this is probably the way to go
 \usepackage[T1]{fontenc}
 \usepackage{polski}
-\usepackage[polish]{babel} 
+\usepackage[polish]{babel}
 \usepackage[final]{microtype} % Less badboxes
 \usepackage{lmodern}
 \usepackage{tgpagella}
@@ -27,8 +27,8 @@
 \graphicspath{ {ilustracje/} }
 \definecolor{titlepagecolor}{cmyk}{0.7,.30,0,.40}
 \definecolor{miejscekolor}{cmyk}{0,0,1,.10}
-\definecolor{code-gray}{gray}{0.95} 
-%%% PAGE LAYOUT 
+\definecolor{code-gray}{gray}{0.95}
+%%% PAGE LAYOUT
 %%%------------------------------------------------------------------------------
 
 \setlrmarginsandblock{0.15\paperwidth}{*}{1} % Left and right margin
@@ -56,9 +56,9 @@
 \usepackage{lipsum} % Just to put in some text
 
 \begin{document}
-	
+
 	\frontmatter
-	
+
 	\maketitle
 
 
@@ -73,7 +73,7 @@
 		\section{Baza danych w GeoPackage}
 			\subsection{Dodawanie wielu warstw}
 			\subsection{Dołączanie projektu}
-			\subsection{Dołączanie symboli i styli}		
+			\subsection{Dołączanie symboli i styli}
 
 	\chapter{Układy współrzędnych}
 		\section{CRS i układ współrzędnych}
@@ -91,7 +91,7 @@
 		    \item EPSG -  Rejestr i baza danych o układach odniesień (SRS i CRS), dawniej prowadzony przez \textbf{European Petroleum Survey Group}, obecnie Komitet Geomatyczny IOGP. Znajdują się w nim opisy parametrów elipsoid, południków zerowych, oraz całych CRS. Zamiennie z pojęciem kodu EPSG używa się terminu SRID - trochę szerszego, zawierającego również definicje własne producentów oprogramowania. Tabelę kodów EPSG przydatnych w codziennej pracy znajdziesz na końcu tego rozdziału. Można również skorzystać z wyszukiwarek kodu np. \hyperlink{https://epsg.org/search/map}{https://epsg.org/search/map}
 		    \end{itemize}
 	    Pozostałe parametry używane przy definiowaniu CRS opiszemy bezpośrednio przy stosowanych układach współrzędnych.
-	
+
 		\section{Uwarunkowania prawne}
 		Wymagania prawne co do stosowanych układów odniesienia zdefiniowane są w rozporządzeniu Rady Ministrów z dnia 15 października 2012 r. w sprawie państwowego systemu odniesień przestrzennych (Dz.U. 2012 poz. 1247)\footnote{http://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20120001247}.
 \begin{tcolorbox}[colback=black!5!white,colframe=white!55!black,title=§ 15. 1 i 2 rozporządzenia]
@@ -106,34 +106,34 @@ tworzeniu zbiorów danych przestrzennych przez organy władzy publicznej, przy c
 \end{enumerate}
 2. W pracach geodezyjnych i kartograficznych innych niż wymienione w ust. 1 pkt 1–4 stosuje się układ współrzędnych
 PL-UTM lub układ współrzędnych PL-1992.
-\end{tcolorbox}	
+\end{tcolorbox}
 			\subsection{PL-1992}
 			Układ (w dalszej części skryptu będziemy używać nazwy układ 92) oparty jest o odwzorowanie Gaussa-Kr\"ugera z południkiem osiowym 19E. Praktyczna stosowalność układu między 14E i 24.30E. Współrzędna wschodnia (X) na południku osiowym przyjmuje wartość 500000, zaś współrzędna północna -5300000. Zniekształcenie skali na południku osiowym przyjmuje wartość 0,9993 (co przekłada się na skurcz -0,7m/km).
 			\subsection{PL-2000}
-			Układ PL-2000 (dalej w skrócie będziemy nazywać go 2000, ze wskazaniem strefy), tak jak układ 92 oparty jest o odwzorowanie Gaussa-Kr\"ugera, z tą różnicą że utworzono tu cztery strefy południkowe 15, 18, 21, 24 oraz przypisano im numery 5, 6, 7, 8. Współrzędna wschodnia na południku osiowym w każdej strefie przyjmuje wartość (500000 + n*1000000). Dla strefy 5 (15E) będzie to +5500000,00. Jak widzimy na podstawie pierwszej cyfry współrzędnej wschodniej możemy ustalić numer strefy. Współczynnik skali to 0,999923. 
+			Układ PL-2000 (dalej w skrócie będziemy nazywać go 2000, ze wskazaniem strefy), tak jak układ 92 oparty jest o odwzorowanie Gaussa-Kr\"ugera, z tą różnicą że utworzono tu cztery strefy południkowe 15, 18, 21, 24 oraz przypisano im numery 5, 6, 7, 8. Współrzędna wschodnia na południku osiowym w każdej strefie przyjmuje wartość (500000 + n*1000000). Dla strefy 5 (15E) będzie to +5500000,00. Jak widzimy na podstawie pierwszej cyfry współrzędnej wschodniej możemy ustalić numer strefy. Współczynnik skali to 0,999923.
 			\subsection{UTM, LAEA, LCC}
 			Układ współrzędnych PL-LAEA oparty jest o odwzorowanie azymutalne równopowierzchniowe Lamberta, z południkiem początkowym 10E, równoleżnikiem 52N, współrzędne początkowe +4321000, +3210000.
 			Układ współrzędnych PL-LCC oparty jest o odwzorowanie stożkowe równokątne Lamberta, z równoleżnikami siecznymi 35 i 65. Początek układu współrzędnych to punkt o współrzędnych geograficznych 10E, 52N i współrzędnych kartezjańskich + 4000000, +2800000.
 			Układ PL-UTM to realizacja światowego układu współrzędnych UTM opartego o odwzorowanie poprzeczne Merkatora w trzech strefach południkowych z południkami 15, 21, 27 oznaczane odpowiednio numerami 33, 34, 35.
 		\section{Starsze układy współrzędnych}
-		
+
 		LAEA 3035
 		\section{Ćwiczenia}
 		\subsection{Przypisanie CRS warstwy rastrowej}
-		W tym ćwiczeniu wykorzystamy zbiory numerycznego modelu terenu w formacie ASCII GRID (.asc) udostępniane poprzez Główny Urząd Geodezji i Kartografii. 
-		W katalogu "/modul1/crs/dtm" znajdziemy przykładowe pliki w takim formacie. Otwieramy okno \textbf{Data Source Manager}, z paska narzędzi lub przy pomocy skrótu (Ctrl+L) i wskazujemy w zakładce przeglądarka nasz plik rastrowy z dysku. 
+		W tym ćwiczeniu wykorzystamy zbiory numerycznego modelu terenu w formacie ASCII GRID (.asc) udostępniane poprzez Główny Urząd Geodezji i Kartografii.
+		W katalogu "/modul1/crs/dtm" znajdziemy przykładowe pliki w takim formacie. Otwieramy okno \textbf{Data Source Manager}, z paska narzędzi lub przy pomocy skrótu (Ctrl+L) i wskazujemy w zakładce przeglądarka nasz plik rastrowy z dysku.
 		Zwróć uwagę na ikonkę \emph{znaku zapytania} znajdującą się po prawej stronie nazwy warstwy wyświetlanej na liście.
 		\begin{figure}[!ht]
 			\centering
 			\includegraphics[width=10cm]{crs-cwiczenie1-brak-crs}
 			\caption{Ostrzeżenie o braku zdefiniowanego CRS}
-		\end{figure} 
+		\end{figure}
 	Po najechaniu na ten symbol i kliknięciu otworzy się nam okno \textbf{Wybór układu współrzędnych}. W polu filtra możemy szybko odszukać potrzebny nam układ - w tym wypadku \emph{ETRS89 / Poland CS92} o kodzie EPSG:2180. Po zatwierdzeniu \emph{OK} wracamy do głównego okna mapy.
 	\begin{figure}[!ht]
     	\centering
 	    \includegraphics[width=10cm]{crs-cwiczenie1-menu-kontekstowe}
     	\caption{Menu kontekstowe warstwy - Ustawienie CRS}
-    \end{figure} 
+    \end{figure}
 		\subsection{Zmiana odwzorowania rastra}
 				W kolejnym ćwiczeniu zmienimy odwzorowanie naszej warstwy rastrowej i zapiszemy nowy zbiór na dysku.
 		Wykorzystamy uprzednio otwarty raster NMT. Nasze zadanie możemy wykonać na dwa sposoby. Pierwszym jest wykorzystanie algorytmu processingu \textbf{Zmień odwzorowanie}. Ukaże się nam okno algorytmu, w którym wskazujemy kolejno:
@@ -150,14 +150,14 @@ PL-UTM lub układ współrzędnych PL-1992.
 		\centering
 		\includegraphics[width=10cm]{crs-cwiczenie2-zmien}
 		\caption{Zmiana odwzorowania rastra}
-	\end{figure} 
+	\end{figure}
 		Po zatwierdzeniu następuje transformacja rastra, która zależnie od jego wielkości może potrwać nawet kilkadziesiąt sekund.
 		Druga metodą polega na zapisaniu istniejącej warstwy przy pomocy menu kontekstowego Eksport -> Zapisz Jako.
 	\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=10cm]{crs-cwiczenie2-zapisz-raster}
 	\caption{Menu kontekstowe warstwy - Eksport Zapisz Jako}
-\end{figure} 		
+\end{figure}
 W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także możemy wygodnie wskazać docelową rozdzielczość rastra.
 	\subsection{Przypisanie układu współrzędnych wydruku}
 	W ostatnim zadaniu tej sekcji przygotujemy arkusz wydruku mapy w odwzorowaniu azymutalnym Lamberta.
@@ -183,7 +183,7 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także 
 			\caption{Właściwości siatki}
 		\end{figure}
 		\item Na koniec zmieńmy odwzorowanie naszej mapy na stożkowe Lamberta (w oknie filtra wyboru układu użyjemy EPSG:3034, ETRS89-extended/LCC Europe), oraz skalę na 1:15000000, aby stwierdzić zniekształcenie linii południkowych.
-	\end{enumerate} 
+	\end{enumerate}
 
 	\chapter{Praca z archiwalnymi rastrami}
 		\section{Wprowadzenie}
@@ -191,7 +191,7 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także 
 			\centering
 			\includegraphics[width=10cm]{georef-ustawienia}
 			\caption{Ustawienia Georeferencera}
-		\end{figure} 
+		\end{figure}
 		\section{Referencja do punktów wspólnych}
 		\begin{figure}[!ht]
 			\centering
@@ -202,7 +202,7 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także 
 		\centering
 		\includegraphics[width=10cm]{georef-tabela-punktow}
 		\caption{Tabela punktów kontrolnych}
-	\end{figure}  
+	\end{figure}
 		\section{Referencja do narożników mapy}
 		\section{Ćwiczenia}
 
@@ -220,7 +220,14 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także 
 		\section{Ćwiczenia}
 			\subsection{Wyznaczenie strefy narażonej osuwiskowo}
 			\subsection{Stok narciarski}
-	Wyszukanie stoku o ekspozycji północnej oraz nachylonego 10-30 stopni, wykorzystanie fuzzy logic
+	Wyszukanie stoku o ekspozycji północnej oraz nachylonego 10-30 stopni, wykorzystanie fuzzy logic. W tym celu wykorzystamy model numeryczny dla gminy Istebna.
+	\begin{enumerate}
+	\item W czystym projekcie dodajemy warstwę wirtualnego rastra z katalogu /modul2/nmt/stok
+	\item Wykonujemy analizę mapy spadków (nachylenia), przy pomocy narzędzi Geoprocessingu. W zakładce Processing wyszukujemy grupę GDAL, następnie Raster - Analiza. Ustawienia domyślne są wystarczające dla naszych potrzeb.
+	\item Następnie przygotowujemy mapę ekspozycji stoku - w grupie GDAL odszukujemy narzędzia Ekspozycja i również stosujemy ustawienia domyślne.
+	\item Tak przygotowane mapy posłużą nam jako wejście do algorytmu Fuzzify Raster (Gausian Membership). Function Midpoint ustawiamy w przypadku nachylenia na 23 stopnie, zaś function spread możemy regulować w zakresie 0-1. Spróbujmy ustawić wartość 0,07 (siedem setnych). Im wartość niższa, tym łagodniejszy dzwon Gaussa.
+	\item Rastry wyjściowe po funkcji Fuzzy możemy teraz dodać do siebie Kalkulatorem rastra
+	\item W ostatnim kroku przy pomocy narzędzi r.to.vect zamienimy mapę rastrową na wektorową.
 	\chapter{Widocznosc obiektów}
 \section{Dominanty krajobrazu}
 \section{Osie widokowe}
@@ -248,8 +255,8 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także 
 \section{Usługi w chmurze}
 \section{Ćwiczenia}
 \subsection{Nowa droga rowerowa}
-\subsection{Plan zagospodarowania} 
-\backmatter	
+\subsection{Plan zagospodarowania}
+\backmatter
 
 \tableofcontents*
 \clearpage
