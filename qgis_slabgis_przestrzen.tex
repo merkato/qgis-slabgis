@@ -23,6 +23,7 @@
 % \usepackage{tikz} % Figures
 \usepackage{graphicx} % Include figures
 \usepackage{import}
+\usepackage{gensymb}
 \usepackage{tcolorbox}
 \graphicspath{ {ilustracje/} }
 \definecolor{titlepagecolor}{cmyk}{0.7,.30,0,.40}
@@ -214,9 +215,43 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także 
 
 \part{Analiza}
 	\chapter{Numeryczny model terenu - wprowadzenie}
+		Pojęciem \textbf{Numerycznego modelu terenu} (NMT) określamy zbiory danych przestrzennych najczęściej w formacie rastrowym, zawierające informacje o ukształtowaniu powierzchni terenu. Wraz z \textbf{Numerycznym Modelem Pokrycia Terenu} (NMPT) powstają obecnie z danych Lotniczego Skaningu Laserowego (ALS/LiDAR). Po klasyfikacji (przy pomocy filtrów morfologicznych) chmury punktów ALS uzyskuje się informacje o pokryciu terenu budynkami i budowlami, wysoką, średnią i niską roślinnością.
+		\begin{equation}\label{rownanienmt}
+		NMT = NMPT - Obiekty
+		\end{equation}
+		Z danych NMT możemy uzyskać wiele produktów pochodnych, wśród których najczęściej wykorzystywanymi są mapa spadków, ekspozycji, wskaźniki szorstkości, wskaźniki pozycji topograficznej. Zaprezentuję tutaj kilka z nich.
+			
 		\section{Mapa spadków}
+		Mapa spadków przedstawia informację o największym nachyleniu pomiędzy sąsiadującymi komórkami rastra. 
+		W QGIS zainstalowanym z pakietu OSGEO4W możemy wygenerować mapę spadków przy pomocy biblioteki GDAL, pakietu GRASS lub SAGA GIS. Wszystkie te algorytmy są dostępne z poziomu narzędzi \emph{Processingu}.
+		Podstawowym, najprostszym jest algorytm GDAL - znajdziemy go w grupie \emph{GDAL -> Raster-Analiza}.
+		Do wyboru mamy tutaj:
+		\begin{itemize}
+			\item możliwość wskazania skali dla współrzędnej Z (np. gdy wyrażona jest w stopach)
+			\item obliczenia przy granicach, czyli sposób obliczania wartości nachylenia dla tych komórek rastra, które ze względu na położenie nie są otoczone z każdej strony conajmniej jedną inną komórką.
+			\item wyrażenie wartości spadku w procentach a nie stopniach. Polega to na założeniu że nachylenie, przy którym deniwelacja między dwoma punktami jest równa odległości kartezjańskiej, wynosi 100\%. Warunek taki spełniony jest dla kąta 45\degree.
+			\item Formuła Zevenbergen-Thorne zamiast Horn'a. Pierwsza z nich lepiej sprawdza się w obliczeniach terenów o łagodnych zmianach powierzchni, zaś druga w warunkach bardzo zróżnicowanego krajobrazu. Formuła Horn'a używa tzw. okna 3x3.
+		\end{itemize}
+			\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=10cm]{nmt-nachylenie}
+	\caption{Mapa spadków}
+\end{figure}
+W przypadku wizualizacji mapy spadków (nachylenia) warto w ustawieniach stylizacji warstwy wskazać tryb klasyfikacji na \textbf{Kwantyl}
+			\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=6cm]{nmt-nachylenie-kwantyl}
+	\caption{Tryb klasyfikacji - kwantyl}
+\end{figure}
 		\section{Mapa ekspozycji}
+		Drugi ze wskaźników który chciałbym przedstawić to mapa ekspozycji. Przy pomocy takich samych algorytmów matematycznych oraz opcji wyliczany jest dominujący kierunek pomiędzy badaną komórką rastra a czterema lub osmioma sąsiednimi. Kierunek ten może być wyrażony w stopniach liczonych od 0\degree w kierunku północnym, zgodnie ze wskazówkami zegara. Istnieje również możliwość wyliczenia wartości wyrażonej jako sinus kąta.
+		\begin{figure}[!ht]
+			\centering
+			\includegraphics[width=10cm]{nmt-ekspozycja}
+			\caption{Mapa ekspozycji}
+		\end{figure} 
 		\section{Inne wskaźniki topograficzne}
+		Wśród setek algorytmów i wskaźników topograficznych spróbujmy wskazać te które w najprostszy sposób opiszą nam przestrzeń. 
 		\section{Ćwiczenia}
 			\subsection{Wyznaczenie strefy narażonej osuwiskowo}
 			\subsection{Stok narciarski}
@@ -228,6 +263,7 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także 
 	\item Tak przygotowane mapy posłużą nam jako wejście do algorytmu Fuzzify Raster (Gausian Membership). Function Midpoint ustawiamy w przypadku nachylenia na 23 stopnie, zaś function spread możemy regulować w zakresie 0-1. Spróbujmy ustawić wartość 0,07 (siedem setnych). Im wartość niższa, tym łagodniejszy dzwon Gaussa.
 	\item Rastry wyjściowe po funkcji Fuzzy możemy teraz dodać do siebie Kalkulatorem rastra
 	\item W ostatnim kroku przy pomocy narzędzi r.to.vect zamienimy mapę rastrową na wektorową.
+\end{enumerate}
 	\chapter{Widocznosc obiektów}
 \section{Dominanty krajobrazu}
 \section{Osie widokowe}
