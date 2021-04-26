@@ -188,24 +188,56 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także 
 
 	\chapter{Praca z archiwalnymi rastrami}
 		\section{Wprowadzenie}
+
 			\begin{figure}[!ht]
 			\centering
 			\includegraphics[width=10cm]{georef-ustawienia}
 			\caption{Ustawienia Georeferencera}
 		\end{figure}
 		\section{Referencja do punktów wspólnych}
+		Podstawowa metoda wyznaczania punktów kontrolnych to zaznaczenie punktu na mapie archiwalnej i wprowadzenie w pojawiającym się oknie współrzędnych, lub wskazanie "Z okna mapy" czyli z materiału współczesnego, z nadaną georeferencją.
 		\begin{figure}[!ht]
 			\centering
 			\includegraphics[width=10cm]{georef-dodaj}
 			\caption{Dodawanie punktu}
 		\end{figure}
+		Po dodaniu odpowiedniej ilości punktów, zależnie od metody transformacji, możemy zobaczyć informację o błędzie średnim kalibracji, oraz przesunięciach dx, dy konkretnych punktów. Na podstawie tabeli możemy podjąć decyzję o poprawie lokalizacji punktu, lub jego usunięciu jako niepewnego.
 		\begin{figure}[!ht]
 		\centering
 		\includegraphics[width=10cm]{georef-tabela-punktow}
 		\caption{Tabela punktów kontrolnych}
 	\end{figure}
 		\section{Referencja do narożników mapy}
+		Druga z metod pracy polega na wstępnym przygotowaniu siatki skorowidzowej, z punktami w współrzędnych narożników mapy. Ta metoda doskonale sprawdza się przy kalibracji map seryjnych, np. geologicznych, czy dawnych Messtichblattach, przy założeniu że skan mapy został wykonany przy dużej staranności (brak skurczu papieru, pofalowań, w miarę możliwości utrzymanie pionu).
+		Przy takich założeniach sprawdzamy rozpiętość przestrzenną arkusza i przy pomocy narzędzia \textbf{Siatka} z menu Wektor -> Analiza tworzymy siatkę prostokątów, w układzie współrzędnych dawnej mapy, z wskazaniem współrzędnych początkowych, oraz offsetu.
+		Następnie włączamy przyciąganie do obiektów (menu Projekt -> Ustawienia Przyciągania) i wskazujemy jako miarę przyciągania np. 10 px. To pozwoli na bardzo sprawne i szybkie dodawanie nowych punktów, a w konsekwencji bardzo wydajną pracę.
 		\section{Ćwiczenia}
+		\subsection{Kalibracja dawnej mapy górniczej}
+		W tym ćwiczeniu skalibrujemy dawną mapę górniczą Głównej Kluczowej Sztolni Dziedzicznej, która wykonana była w odwzorowaniu Cassiniego, ale bez wskazanych współrzędnych, nie znamy też układu. Konieczne więc będzie zastosowanie metody kalibracji na punkty wspólne.
+
+		\begin{enumerate}
+		\item Uruchamiamy Georeferencer z menu Raster
+		\item W ustawieniach przekształcenia wskazujemy układ współrzędnych PUWG 1992 (CS92 Poland, EPSG:2180)
+		\item Jako metody przekształcenia użyjemy Helmerta
+		\item W oknie głównym mapy otworzymy warstwę WMS mapy topograficznej i przybliżymy na obszar Zabrza
+		\item Poprzez obserwację mapy oryginalnej i współczesnej wyszukamy punkty wspólne (co najmniej 5)
+		\item W ustawieniach przekształcenia wskażemy plik docelowy, plik raportu i plik mapy pdf, oraz konieczność otworzenia warstwy po zakończeniu
+		\item Zatwierdzamy nasze przekształcenie symbolem zielonego trójkąta (Play)
+		\end{enumerate}
+    \subsection{Kalibracja mapy seryjnej na siatkę}
+W tym przypadku wykorzystamy dwa arkusze seryjnej Szczegółowej Mapy Geologicznej PIG wykonane w oparciu o układ 42 i cięcie Międzynarodowej Mapy Świata. Nosi ona oznaczenia zarówno siatki kilometrowej w układzie 42 jak i współrzędnych geograficznych. Na tej podstawie przygotujemy w pierwszej kolejności siatkę prostokątów skorowidzu.
+		\begin{enumerate}
+		\item W menu Projekt uruchamiamy Ustawienia przyciągania
+		\item Wprowadzamy ustawienie przyciągania do węzłów i segmentów, oraz odległość 10 px
+		\item Uruchamiamy narzędzie Siatka z menu Wektor -
+		\item Wprowadzamy parametry:
+		\item W Georeferencerze GDAL z menu Plik wybieramy funkcję Resetuj Georeferencer
+		\item Następnie otwieramy pierwszą z map znajdujących się w katalogu /modul1/georef/seryjne
+		\item Wybieramy ustawienia przekształcenia, wprowadzamy nazwę pliku wynikowego, przekształcenie Helmerta
+		\item Zaznaczamy kolejno cztery narożniki na mapie archiwalnej i w oknie mapy odpowiadający obiekt z siatki skorowidzowej.
+		\item Zatwierdzamy zmiany przy pomocy Wykonaj przekształcenie
+		\item Powtarzamy operację od punktu 5 dla drugiej z map
+		\end{enumerate}
 
 	\chapter{Referencja liniowa}
 		\section{Wprowadzenie}
@@ -220,9 +252,9 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także 
 		NMT = NMPT - Obiekty
 		\end{equation}
 		Z danych NMT możemy uzyskać wiele produktów pochodnych, wśród których najczęściej wykorzystywanymi są mapa spadków, ekspozycji, wskaźniki szorstkości, wskaźniki pozycji topograficznej. Zaprezentuję tutaj kilka z nich.
-			
+
 		\section{Mapa spadków}
-		Mapa spadków przedstawia informację o największym nachyleniu pomiędzy sąsiadującymi komórkami rastra. 
+		Mapa spadków przedstawia informację o największym nachyleniu pomiędzy sąsiadującymi komórkami rastra.
 		W QGIS zainstalowanym z pakietu OSGEO4W możemy wygenerować mapę spadków przy pomocy biblioteki GDAL, pakietu GRASS lub SAGA GIS. Wszystkie te algorytmy są dostępne z poziomu narzędzi \emph{Processingu}.
 		Podstawowym, najprostszym jest algorytm GDAL - znajdziemy go w grupie \emph{GDAL -> Raster-Analiza}.
 		Do wyboru mamy tutaj:
@@ -249,9 +281,9 @@ W przypadku wizualizacji mapy spadków (nachylenia) warto w ustawieniach styliza
 			\centering
 			\includegraphics[width=10cm]{nmt-ekspozycja}
 			\caption{Mapa ekspozycji}
-		\end{figure} 
+		\end{figure}
 		\section{Inne wskaźniki topograficzne}
-		Wśród setek algorytmów i wskaźników topograficznych spróbujmy wskazać te które w najprostszy sposób opiszą nam przestrzeń. 
+		Wśród setek algorytmów i wskaźników topograficznych spróbujmy wskazać te które w najprostszy sposób opiszą nam przestrzeń.
 		\section{Ćwiczenia}
 			\subsection{Wyznaczenie strefy narażonej osuwiskowo}
 			\subsection{Stok narciarski}
