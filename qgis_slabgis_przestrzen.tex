@@ -194,8 +194,9 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także 
 			\includegraphics[width=10cm]{georef-ustawienia}
 			\caption{Ustawienia Georeferencera}
 		\end{figure}
+
 		\section{Referencja do punktów wspólnych}
-		Podstawowa metoda wyznaczania punktów kontrolnych to zaznaczenie punktu na mapie archiwalnej i wprowadzenie w pojawiającym się oknie współrzędnych, lub wskazanie "Z okna mapy" czyli z materiału współczesnego, z nadaną georeferencją.
+		Podstawowa metoda wyznaczania punktów kontrolnych to zaznaczenie punktu na mapie archiwalnej i wprowadzenie w pojawiającym się oknie współrzędnych, lub wskazanie ,,Z obszaru mapy'' czyli z materiału współczesnego, z nadaną georeferencją.
 		\begin{figure}[!ht]
 			\centering
 			\includegraphics[width=10cm]{georef-dodaj}
@@ -207,10 +208,12 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także 
 		\includegraphics[width=10cm]{georef-tabela-punktow}
 		\caption{Tabela punktów kontrolnych}
 	\end{figure}
+
 		\section{Referencja do narożników mapy}
 		Druga z metod pracy polega na wstępnym przygotowaniu siatki skorowidzowej, z punktami w współrzędnych narożników mapy. Ta metoda doskonale sprawdza się przy kalibracji map seryjnych, np. geologicznych, czy dawnych Messtichblattach, przy założeniu że skan mapy został wykonany przy dużej staranności (brak skurczu papieru, pofalowań, w miarę możliwości utrzymanie pionu).
 		Przy takich założeniach sprawdzamy rozpiętość przestrzenną arkusza i przy pomocy narzędzia \textbf{Siatka} z menu Wektor -> Analiza tworzymy siatkę prostokątów, w układzie współrzędnych dawnej mapy, z wskazaniem współrzędnych początkowych, oraz offsetu.
 		Następnie włączamy przyciąganie do obiektów (menu Projekt -> Ustawienia Przyciągania) i wskazujemy jako miarę przyciągania np. 10 px. To pozwoli na bardzo sprawne i szybkie dodawanie nowych punktów, a w konsekwencji bardzo wydajną pracę.
+		\pagebreak
 		\section{Ćwiczenia}
 		\subsection{Kalibracja dawnej mapy górniczej}
 		W tym ćwiczeniu skalibrujemy dawną mapę górniczą Głównej Kluczowej Sztolni Dziedzicznej, która wykonana była w odwzorowaniu Cassiniego, ale bez wskazanych współrzędnych, nie znamy też układu. Konieczne więc będzie zastosowanie metody kalibracji na punkty wspólne.
@@ -225,15 +228,30 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także 
 		\item Zatwierdzamy nasze przekształcenie symbolem zielonego trójkąta (Play)
 		\end{enumerate}
     \subsection{Kalibracja mapy seryjnej na siatkę}
-W tym przypadku wykorzystamy dwa arkusze seryjnej Szczegółowej Mapy Geologicznej PIG wykonane w oparciu o układ 42 i cięcie Międzynarodowej Mapy Świata. Nosi ona oznaczenia zarówno siatki kilometrowej w układzie 42 jak i współrzędnych geograficznych. Na tej podstawie przygotujemy w pierwszej kolejności siatkę prostokątów skorowidzu.
+W tym przypadku wykorzystamy dwa arkusze seryjnej Szczegółowej Mapy Geologicznej PIG \hyperlink{http://geologia.pgi.gov.pl/}{http://geologia.pgi.gov.pl/} wykonane w oparciu o układ 42 i cięcie Międzynarodowej Mapy Świata. Nosi ona oznaczenia zarówno siatki kilometrowej w układzie 42 jak i współrzędnych geograficznych. Na tej podstawie przygotujemy w pierwszej kolejności siatkę prostokątów skorowidzu. Później przechodzimy do samej kalibracji. 
 		\begin{enumerate}
 		\item W menu Projekt uruchamiamy Ustawienia przyciągania
-		\item Wprowadzamy ustawienie przyciągania do węzłów i segmentów, oraz odległość 10 px
-		\item Uruchamiamy narzędzie Siatka z menu Wektor -
-		\item Wprowadzamy parametry:
+		\item Wprowadzamy ustawienie przyciągania do wierzchołków, oraz odległość 10 pikseli
+		\begin{figure}[!ht]
+			\centering
+			\includegraphics[width=10cm]{georef-przyciaganie}
+			\caption{Ustawienia przyciągania}
+		\end{figure}
+		\item Uruchamiamy narzędzie \textbf{Utwórz Siatkę} z menu Wektor -> Narzędzia badawcze
+		\item Wprowadzamy parametry: Typ siatki Prostokąt (Poligon), Zasięg siatki \emph{18.50,19.0,50.3333,51.00 [EPSG:4326]}, Odstęp w poziomie 0,25  (czyli 15'), Odstęp w pionie 0,3333 (10'), pokrycie poziome i pionowe zostawiamy 0, wskazujemy układ współrzędnych EPSG:4326 i pozostałe pola pozostawiamy bez zmian
+		\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=10cm]{georef-siatka}
+	\caption{Ustawienia przyciągania}
+\end{figure}		
 		\item W Georeferencerze GDAL z menu Plik wybieramy funkcję Resetuj Georeferencer
 		\item Następnie otwieramy pierwszą z map znajdujących się w katalogu /modul1/georef/seryjne
-		\item Wybieramy ustawienia przekształcenia, wprowadzamy nazwę pliku wynikowego, przekształcenie Helmerta
+		\item Wybieramy ustawienia przekształcenia, wprowadzamy nazwę pliku wynikowego, przekształcenie Wielomian 1
+		\begin{figure}[!ht]
+			\centering
+			\includegraphics[width=8cm]{georef-ustawienia-skorowidz}
+			\caption{Ustawienia przekształcenia}
+		\end{figure}		
 		\item Zaznaczamy kolejno cztery narożniki na mapie archiwalnej i w oknie mapy odpowiadający obiekt z siatki skorowidzowej.
 		\item Zatwierdzamy zmiany przy pomocy Wykonaj przekształcenie
 		\item Powtarzamy operację od punktu 5 dla drugiej z map
