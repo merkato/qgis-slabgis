@@ -117,8 +117,40 @@ PL-UTM lub układ współrzędnych PL-1992.
 			Układ współrzędnych PL-LCC oparty jest o odwzorowanie stożkowe równokątne Lamberta, z równoleżnikami siecznymi 35 i 65. Początek układu współrzędnych to punkt o współrzędnych geograficznych 10E, 52N i współrzędnych kartezjańskich + 4000000, +2800000.
 			Układ PL-UTM to realizacja światowego układu współrzędnych UTM opartego o odwzorowanie poprzeczne Merkatora w trzech strefach południkowych z południkami 15, 21, 27 oznaczane odpowiednio numerami 33, 34, 35.
 		\section{Starsze układy współrzędnych}
+			Dawniej w naszym kraju stosowano wiele układów współrzędnych, o różnorodnych cechach. By wymienić choćby układ ,,42'' oparty oodwzorowanie Gaussa-Kr\"ugera, elipsoidę Krassowskiego z punktem przyłożenia w Pułkowie. Na jego podstawie opracowano największy zbiór map topograficznych w skali 1:10000 naszego kraju. Należy pamiętać że występował on w dwóch różnych wariantach stref odwzorowawczych (pasów południkowych) - 6 i 3 stopniowych. Strefy 6\degree obowiązywały przy realizacji map w skali 1:10000 i mniejszych.
+			W późniejszym okresie stworzono układ współrzędnych 1965. Cechował się on występowaniem 5 stref odwzorowawczych, z których cztery zrealizowane były w odwzorowaniu quasi-stereograficznym, zaś strefa 5, obejmująca obszar dawnego (przed 1975 rokiem) województwa śląskiego w odwzorowaniu Gaussa-Kr\"ugera. W związku z tym na styku stref nie ma możliwości łatwego "sklejenia" arkuszy mapy. Mogą one cechować się innym obrotem, oraz innymi zniekształceniami odwzorowawczymi w punkcie. 
+			\begin{figure}[!ht]
+				\centering
+				\includegraphics[width=8cm]{crs-1965-znieksztalcenia}
+				\caption{Zniekształcenia odwzorowawcze stref układu 1965, źródło: Instrukcja O-1/O-2 z 2001 r.}
+			\end{figure}
+			W obiegu występują również mapy archiwalne w układzie Borowa Góra (w województwie śląskim zasób ten, w dyspozycji Archiwum Państwowego w Katowicach, we współpracy z Wojewódzkim Ośrodkiem Dokumentacji Geodezyjnej i Kartograficznej został przetworzony do usługi WMS w układzie 1992), układzie Sucha Góra (dokumentacja górnicza i dawne mapy topograficzne pruskie).
+		\section{Identyfikatory i parametry - rozpoznawanie układu}	
+			Aby ułatwić przyszłą pracę z układami współrzędnych w środowisku GIS zbierzemy tutaj niektóre parametry wspomnianych wcześniej układów\\
+			\begin{tabular}{|c|c|}
+				\hline
+				Nazwa układu & Kod EPSG \\
+				\hline
+				Układ 1992 & 2180 \\
+				\hline
+				Układ 2000 & 2176,2177,2178, 2179 \\
+				\hline
+				Układ 1965&  3120 (I), 2172 (II), 2174 (III), 2174 (IV), 2175 (V)\\
+				\hline
+				Układ 1942 (strefy 3\degree)& 3329 (5/ 15\degree), 3330 (6/ 18\degree) 3331 (7/ 21\degree) 3332 (8/ 24\degree) \\
+				\hline
+				Układ 1942 (Pułkowo) strefy 6\degree& 3333 (3/ 15\degree), 3334 (4/ 21\degree) \\
+				\hline
+				LCC & 3034 \\
+				\hline
+				LAEA & 3035 \\
+				\hline
+				UTM & 32633 (33N), 32634 (34N)  \\
+				\hline
+				&  \\
+				\hline
+			\end{tabular}
 
-		LAEA 3035
 		\section{Ćwiczenia}
 		\subsection{Przypisanie CRS warstwy rastrowej}
 		W tym ćwiczeniu wykorzystamy zbiory numerycznego modelu terenu w formacie ASCII GRID (.asc) udostępniane poprzez Główny Urząd Geodezji i Kartografii.
@@ -188,12 +220,30 @@ W tym wypadku również wskazujemy docelowy układ współrzędnych, ale także 
 
 	\chapter{Praca z archiwalnymi rastrami}
 		\section{Wprowadzenie}
-
+W niektórych przypadkach do prac w projekcie musimy dołączyć dane starsze, nie wytworzone w systemie GIS - np. tradycyjne mapy topograficzne, górnicze, czy plany i szkice. Aby tu uczynić musimy wykonać operację nadania georeferencji rastra, nazywanej również kalibracją rastra. W wyniku tej operacji do pliku w formacie GeoTIFF oprócz informacji graficznej dołączona zostanie również informacja o współrzędnych geograficznych narożników obrazu. Jeśli jednak dane archiwalne cechują się niską jakością (np. źle wykonane skanowanie mapy), konieczne będzie w tym kroku również jej wpasowanie w taki sposób, aby współrzędne w obrębie całego arkusza zmieniały się liniowo.
+Całość tych zadań realizuje wtyczka Georeferencer GDAL, która w standardowej instalacji QGIS jest domyślnie zainstalowana i aktywowana. Odnaleźć ją możemy w menu Raster.
+Jeśli uruchomimy wtyczkę i przejdziemy do ustawień przekształcenia (ikonka trybiku, lub menu Ustawienia), możemy zauważyć że do naszej pracy będziemy potrzebowali pewnych informacji. Pierwszą jest docelowy układ współrzędnych. Warto tu zaznaczyć, że nie musimy on być zbieżny z układem współrzędnych i odwzorowaniem pierwotnym. Pod warunkiem odpowiedniej ilości punktów kontrolnych, operacja transformacji graficznej może dać całkiem dobre wyniki. Kolejną jest typ przekształcenia z następującymi cechami:\\
+		\begin{tabular}{|p{0.2\textwidth}|p{0.6\textwidth}|p{0.1\textwidth}|}
+	\hline
+	Typ & Opis & Ilość GCP \\
+	\hline
+	Liniowa & Podstawowy, najprostszy tryb, polegający wyłącznie na translacji, bez zmiany skali i obrotu. & 3 \\
+	\hline
+	Helmerta & Transformacja Helmerta w jej klasycznej postaci, to jest translacja wraz ze zmianą skali i obrotem. Przy dobrej jakości skanie, oraz zgodności odwzorowań pierwotnego i docelowego, jest to metoda najszybsza. & 4 \\
+	\hline
+	Wielomiany 1-3 & Transformacja wielomianowa jest najczęściej stosowaną. Wielomian drugiego stopnia pozwala na wprowadzenie poza zmianami opisanymi w transformacji Helmerta, również krzywiznę.  & 5-10 \\
+	\hline
+	Funkcja sklejana (TPS) & Thin Plate Spline pozwala na wyrównywanie lokalnych deformacji, szczególnie przy bardzo złej jakości skanach. & 3 \\
+	\hline
+	Odwzorowane (rzutowe) & Tryb podobny do liniowego, z możliwością obrotu & 3 \\
+	\hline
+		\end{tabular}\\
 			\begin{figure}[!ht]
 			\centering
 			\includegraphics[width=10cm]{georef-ustawienia}
-			\caption{Ustawienia Georeferencera}
+			\caption{Ustawienia przekształcenia}
 		\end{figure}
+Punkty kontrolne (GCP) możemy wprowadzać w oparciu o współrzędne numeryczne lub poprzez wskazanie na mapie współczesnej (warstwie rastrowej lub wektorowej o wcześniej nadanej georeferencji). Szczególnym rozwinięciem tej drugiej metody jest kalibracji na ,,narożniki mapy''.
 
 		\section{Referencja do punktów wspólnych}
 		Podstawowa metoda wyznaczania punktów kontrolnych to zaznaczenie punktu na mapie archiwalnej i wprowadzenie w pojawiającym się oknie współrzędnych, lub wskazanie ,,Z obszaru mapy'' czyli z materiału współczesnego, z nadaną georeferencją.
