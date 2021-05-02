@@ -67,7 +67,22 @@
 \part{Odniesienia przestrzenne}
 	\chapter{Zbiory danych przestrzennych}
 		\section{Wymagania prawne}
+		Podstawowe wymagania prawne dla przechowywania, przetwarzania informacji przestrzennej są zdefiniowane w rozporządzeniu
+Rady Ministrów z dnia 12 kwietnia 2012 r. w sprawie Krajowych Ram Interoperacyjności, minimalnych wymagań dla rejestrów publicznych i wymiany informacji w postaci elektronicznej oraz minimalnych wymagań dla systemów teleinformatycznych (tekst jednolity Dz.U. 2017.247) oraz.
+
+
+		W załączniku nr 2 rozporządzenia znajdujemy następujące istotne dla nas zapisy:  
+		,,A. W celu wymiany zasobów informacyjnych przez podmioty realizujące zadania publiczne stosuje się:\\
+		2. do danych zawierających informację graficzną stosuje się co najmniej jeden z następujących formatów danych:\\
+		(2.3) .geotiff
+		B. Do określenia struktury i wizualizacji dokumentu elektronicznego stosuje się następujące formaty danych:\\
+		Do definiowania układu informacji polegającego na określeniu elementów informacyjnych oraz powiązań między nimi stosuje się następujące formaty danych:\\
+		(1.1) .xml\\
+		(1.2) .xsd\\
+		(1.3) .gml''\\
+	W dalszej części znajduje się informacja o formatach które ,,organ publiczny'' powinien móc obsłużyć w trybie do odczytu, a więc przyjmować od interesantów. 	
 			\subsection{GML}
+			XML (Extensible Markup Language, rozszerzalny język znaczników) to uniwersalny język znaczników przeznaczony do reprezentowania różnych danych w strukturalizowany sposób. Geography Markup Language to oparty na XML (eXtensible Markup Language) język opracowany przez Open Geospatial Consortium do transferu danych geograficznych. GML jest językiem formalnym służącym do opisu danych geograficznych zgodnie z zasadami opisanymi w normie ISO 19136:2007. Intencją opracowania języka GML była wymiana danych pomiędzy różnymi aplikacjami systemów informacji geograficznej. Struktura dokumentu GML, opisywana jest przez plik schematu – najczęściej XSD (XML Schema Description). Otwieranie formatu GML w środowisku QGIS (korzystającym w tym celu z biblioteki GDAL/OGR) jest bardzo proste.
 		\section{GeoPackage - następca Shapefile}
 			\subsection{Tworzenie zbioru Geopackage}
 			\subsection{Połączenie ze zbiorem}
