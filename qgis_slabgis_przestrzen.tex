@@ -82,15 +82,58 @@ Rady Ministrów z dnia 12 kwietnia 2012 r. w sprawie Krajowych Ram Interoperacyj
 		(1.3) .gml''\\
 	W dalszej części znajduje się informacja o formatach które ,,organ publiczny'' powinien móc obsłużyć w trybie do odczytu, a więc przyjmować od interesantów. 	
 			\subsection{GML}
-			XML (Extensible Markup Language, rozszerzalny język znaczników) to uniwersalny język znaczników przeznaczony do reprezentowania różnych danych w strukturalizowany sposób. Geography Markup Language to oparty na XML (eXtensible Markup Language) język opracowany przez Open Geospatial Consortium do transferu danych geograficznych. GML jest językiem formalnym służącym do opisu danych geograficznych zgodnie z zasadami opisanymi w normie ISO 19136:2007. Intencją opracowania języka GML była wymiana danych pomiędzy różnymi aplikacjami systemów informacji geograficznej. Struktura dokumentu GML, opisywana jest przez plik schematu – najczęściej XSD (XML Schema Description). Otwieranie formatu GML w środowisku QGIS (korzystającym w tym celu z biblioteki GDAL/OGR) jest bardzo proste.
+			XML (Extensible Markup Language, rozszerzalny język znaczników) to uniwersalny język znaczników przeznaczony do reprezentowania różnych danych w strukturalizowany sposób. Geography Markup Language to oparty na XML (eXtensible Markup Language) język opracowany przez Open Geospatial Consortium do transferu danych geograficznych. GML jest językiem formalnym służącym do opisu danych geograficznych zgodnie z zasadami opisanymi w normie ISO 19136:2007. Intencją opracowania języka GML była wymiana danych pomiędzy różnymi aplikacjami systemów informacji geograficznej. Struktura dokumentu GML, opisywana jest przez plik schematu – najczęściej XSD (XML Schema Description). Otwieranie formatu GML w środowisku QGIS (korzystającym w tym celu z biblioteki GDAL/OGR) jest proste, pod warunkiem jednak, że twórca zbioru przestrzega norm. Niestety w przypadku polskich danych przestrzennych często możemy się spotkać z bardzo luźnym podejściem. Wtedy pomaga przetworzenie takiego zbioru przy pomocy pakietu GDAL/OGR i jego sterownika GMLAS, z wykorzystaniem schematu aplikacyjnego XSD (schematy takie możemy znaleźć m.in. na stronach GUGiK). 			
 		\section{GeoPackage - następca Shapefile}
+		    Format danych Shapefile powstał na początku lat 90 XX wieku, opracowany przez firmę ESRI na potrzeby ArcView. Składa się on z co najmniej 3 plików (.shp, .shx, .dbf), lecz ich liczba może sięgać 14 - dla jednej warstwy danych. Uszkodzenie choćby jednego z plików obowiązkowych powoduje bezpowrotną utratę informacji. Jednocześnie informacje o układzie współrzędnych i odwzorowaniu, a także kodowaniu znaków narodowych znajdują się w osobnych plikach. Jak widać wygoda użytkowania takiego zbioru jest niewielka, ponieważ łatwo o utratę integralności.\\
+		    W 2014 roku powstał standard OGC dla formatu danych przestrzennych GeoPackage. Utworzono go w oparciu o możliwości silnika bazy danych SQLite/Spatialite które pozwalają przechowywać wiele warstw danych o różnych typach geometrii, w tym również rastrów w postaci jednego pliku. W kolejnych latach powstawały rozszerzenia tego formatu pozwalające na przechowywanie w zbiorze GeoPackage również metadanych i informacji o projekcie. 
 			\subsection{Tworzenie zbioru Geopackage}
+			W oprogramowaniu QGIS sprowadza się do wybrania odpowiedniej pozycji z menu (Warstwa - Twórz warstwę - Nowa warstwa GeoPackage) lub paska narzędziowego, albo skorzystanie ze skrótu klawiszowego Ctrl+Shift+N. W nowo otwartym oknie musimy wprowadzić nazwę pliku na dysku w którym dane będą zapisywane, nazwę warstwy wektorowej, typ geometrii, oraz nazwy i typy pól danych. 
+			\begin{figure}[!ht]
+				\centering
+				\includegraphics[width=7cm]{geopackage-tworz}
+				\caption{Tworzenie nowej warstwy Geopackage}
+			\end{figure}			
+		    Istnieje również możliwość dodania opisu warstwy (komentarza), a także zmiana nazw pól identyfikatora (fid) czy kolumny geometrii. Są to ustawienia zaawansowane, na codzień nie ma potrzeby ingerencji w tą część.
 			\subsection{Połączenie ze zbiorem}
+			Jeśli planujemy dłuższą pracę z jakimś konkretnym zbiorem warstw danych, istnieje możliwość utworzenie połączenia do bazy. W tym celu musimy skorzystać z narzędzia znajdującego się w menu Baza Danych - Zarządzanie bazami danych. W oknie menedżera baz po lewej stronie znajdziemy listę tzw. dostawców. Są to sterowniki dostępu do GeoPackage, PostgreSQL, Oracle, MS Spatial, etc.
+			\begin{figure}[!ht]
+				\centering
+				\includegraphics[width=7cm]{geopackage-polaczenie}
+				\caption{Nowe połączenie Geopackage}
+			\end{figure}
+			 Jeśli kliknięmy w GeoPackage prawym klawiszem pojawi się opcja Nowe Połączenie. Należy jedynie wskazać plik .gpkg na dysku. Tak podłączona baza danych da nam wiele możliwości. Zobaczmy jakie.
 		\section{Baza danych w GeoPackage}
 			\subsection{Dodawanie wielu warstw}
+			Do istniejącego zbioru GeoPackage możemy dodać więcej niż jedną warstwę danych. Wykonuje się taką operację poprzez wskazanie w oknie tworzenia lub zapisu warstwy istniejącego zbioru, ale ze wskazaniem innej nazwy tabeli.
+			\begin{figure}[!ht]
+				\centering
+				\includegraphics[width=15cm]{geopackage-zapisywanie}
+				\caption{Zapisywanie warstwy do GeoPackage - menu kontekstowe oraz okno}
+			\end{figure} 
 			\subsection{Dołączanie projektu}
+			Gotowy projekt można również zapisać do istniejącego, podłączonego jako baza danych zbioru GeoPackage. W tym celu należy wybrać menu Plik - Zapisz do - GeoPackage. W oknie należy w pierwszym polu wybrać z listy podłączoną bazę, zaś w drugim polu możemy dodać opisową nazwę projektu (może ona zawierać spacje, polskie znaki, może być dłuższa)
+			\begin{figure}[!ht]
+				\centering
+				\includegraphics[width=15cm]{geopackage-zapis-projektu-menu}
+				\caption{Zapisywanie projektu}
+			\end{figure} 			
+			
 			\subsection{Dołączanie symboli i styli}
-
+			Jeśli warstwa została otwarta z bazy danych GeoPackage istnieje możliwość zapisania stylu (kompozycji kartograficznej) warstwy do tejże bazy danych w celu ponownego wykorzystania. Musimy otworzyć okno Właściwości warstwy, w zakładce Styl w dolnej części okna znajdziemy klawisz Styl i możliwość zapisania (zobacz na ilustracji).
+			\begin{figure}[!ht]
+				\centering
+				\includegraphics[width=7cm]{geopackage-styl}
+				\caption{Zapisywanie stylu do zbioru Geopackage}
+			\end{figure} 
+			\subsection{Ćwiczenie - GeoPackage}
+			\begin{itemize}
+				\item Z katalogu modul1/geopackage/bdl zaczytamy dwie warstwy wektorowe w formacie Shapefile - F\_COMPARTMENT oraz F\_FOREST\_RANGE. 
+				\item Następnie zapiszemy warstwę zasięgów leśnictw do nowego zbioru Geopackage (używając menu kontekstowego na liście warstw, oraz wskazując Eksport).
+				\item Kolejno zapiszemy drugą z warstw do tego samego zbioru na dysku, pamiętając o nadaniu nazwy warstwy.
+				\item Uruchamiamy menedżer baz danych (Menu Baza Danych - Zarządzanie bazami danych)
+				\item W lewej części okna klikamy na napisie GeoPackage prawym klawiszem i dodajemy nowe połączenie. Następnie zamykamy okno menedżera baz.
+				\item Z menu Projekt wybieramy Zapisz do - GeoPackage, a następnie zapisujemy projekt.
+			\end{itemize}
 	\chapter{Układy współrzędnych}
 		\section{CRS i układ współrzędnych}
 		W środowisku GIS możemy spotkać się z pojęciami CRS, odwzorowania kartograficznego, układu współrzędnych, oraz tzw. datum czy gridshift. Do dalszej komfortowej pracy konieczne jest zapoznanie się z nimi, oraz ich wzajemnymi powiązaniami.
@@ -324,10 +367,38 @@ W tym przypadku wykorzystamy dwa arkusze seryjnej Szczegółowej Mapy Geologiczn
 
 	\chapter{Referencja liniowa}
 		\section{Wprowadzenie}
+		W wcześniejszych ćwiczeniach poznaliśmy referencję przestrzenną w współrzędnych kartezjańskich XY. Istnieje możliwość dodania do naszych wektorowych zbiorów GIS również innych wymiarów - czasu, wysokości, czy pikietażu/kilometrażu. Ten ostatni parametr przechowuje się przy pomocy techniki nazywanej Linear Reference System (System Referencji Liniowej). Zakłada ona przygotowanie takiego zbioru w którym każdemu odcinkowi linii, (lub każdemu segmentowi) przypisuje się wartości współrzędnej M (measure) dla punktu początkowego i końcowego. Na tej podstawie możemy później odszukać dowolną lokalizację w ramach wskazanego odcinka. W praktyce budownictwa drogowego i kolejowego, ale również zarządzania siecią wodną, taki sposób określania lokalizacji jest podstawowym. Spójrzmy na przykład ogłoszenia przetargu na budowę drogi. 
+		\begin{figure}[!ht]
+			\centering
+			\includegraphics[width=11cm]{lrs-ogloszenie}
+			\caption{Przykład ogłoszenia przetargu ze wskazanym kilometrażem}
+		\end{figure}
+	Podane są tu wartości kilometrów oraz metrów początku i końca opracowania dla drogi. 
 		\section{Przygotowanie zbioru liniowego}
+		 W wtyczce LRS taką operację wykonuje się w zakładce Kalibracja.  
 		\section{Wyszukiwanie lokalizacji}
 		\section{Ćwiczenia}
-
+		\subsection{Kalibracja}
+		\begin{enumerate}
+			\item W nowym projekcie wczytujemy z pliku bielawa.gpkg w katalogu modul1/lrs obie warstwy wektorowe (jedna liniowa, druga punktowa).
+			\item W wtyczce LRS przechodzimy do zakładki Kalibracja, a wewnątrz niej do zakładki Input.
+			\item Wskazujemy w polu Warstwa liniowa naszą warstwę sieci drogowej, kolejowej lub wodnej.
+			\item W polu Atrybut trasy - linie należy wskazać kolumnę z tabeli, w której znajdują się numery lub nazwy (np. dla rzek)
+			\item W ten sam sposób wypełniamy pola dla Warstwy Punktowej i Atrybutu trasy - punkty.
+			\item W polu Atrybut pikietażu wskazujemy kolumnę tabeli warstwy punktowej w której znajdują się wartości miary.
+			\item Ostatnie pole w tej części wskazujemy jednostki miary - domyślne kilometry
+			\item Wskazujemy wartość przyciągania punktów - 5 metrów
+			\item Zaznaczamy również Ekstrapolacja
+			\item Zatwierdzamy klawiszem OK
+			\item Wprowadzamy nazwę warstwy wynikowej np. Linie z miarą i używamy klawisza Create
+			\item W zakładce Błędy używamy przycisków w dolnej części - Create Error Layers, Create Quality Layers
+			\item Przejrzymy teraz jakość naszej kalibracji w warstwie Quality (np. otwierając tabelę atrybutów)
+		\end{enumerate}
+			\begin{figure}[!ht]
+		\centering
+		\includegraphics[width=8cm]{lrs-kalibracja}
+		\caption{Ustawienia kalibracji}
+	\end{figure}
 \part{Analiza}
 	\chapter{Numeryczny model terenu - wprowadzenie}
 		Pojęciem \textbf{Numerycznego modelu terenu} (NMT) określamy zbiory danych przestrzennych najczęściej w formacie rastrowym, zawierające informacje o ukształtowaniu powierzchni terenu. Wraz z \textbf{Numerycznym Modelem Pokrycia Terenu} (NMPT) powstają obecnie z danych Lotniczego Skaningu Laserowego (ALS/LiDAR). Po klasyfikacji (przy pomocy filtrów morfologicznych) chmury punktów ALS uzyskuje się informacje o pokryciu terenu budynkami i budowlami, wysoką, średnią i niską roślinnością.
